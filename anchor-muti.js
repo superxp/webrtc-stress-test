@@ -8,11 +8,11 @@ let uid = argumentsx[1];
   const browser = await puppeteer.launch(
 	  {       
 		  args:
-		  [
+		  [     '-no-sandbox',  
 	            '--use-fake-device-for-media-stream',
 	            '--use-fake-ui-for-media-stream',		  
-		    '--use-file-for-fake-audio-capture=/home/durant/durantismyidol/1.wav',
-	            '--use-file-for-fake-video-capture=/home/durant/durantismyidol/1.y4m'
+		        '--use-file-for-fake-audio-capture='+process.cwd()+'/1.wav',
+	            '--use-file-for-fake-video-capture='+process.cwd()+'/1.mjpeg'
 		  ],
 		  headless: false,
 		  slowMo: 100,

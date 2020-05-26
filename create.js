@@ -8,15 +8,15 @@ console.log(createLength);
 (async () => {
     const browser = await puppeteer.launch({
         args: [
-            // '--use-fake-device-for-media-stream',
-            '--use-fake-ui-for-media-stream', //摄像头流
+            // '--use-fake-device-for-media-stream', //使用伪造的视频流
+            '--use-fake-ui-for-media-stream', //不需要手动点允许摄像头
             '-no-sandbox', //window
-            //  '--use-file-for-fake-audio-capture=/home/durant/durantismyidol/1.wav', //视频地址
-            //  '--use-file-for-fake-video-capture=/home/durant/durantismyidol/1.y4m'
+            //  '--use-file-for-fake-audio-capture=/home/durant/durantismyidol/1.wav', //音频地址
+            //  '--use-file-for-fake-video-capture=/home/durant/durantismyidol/1.y4m'  //视频地址
         ],
-        headless: false,
+        headless: false,  //false 浏览器可见
         slowMo: 100,
-        ignoreHTTPSErrors: true
+        ignoreHTTPSErrors: true  //忽略HTTPS
     });
     for (let i = 0; i < createLength; i++) {
         const page = await browser.newPage();

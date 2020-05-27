@@ -52,7 +52,8 @@ function getLocalIP() {
         }
 
     } else if (osType === 'Linux') {
-        ip = netInfo.eth0[0].address;
+	console.log(netInfo);    
+        ip = netInfo.wlp1s0[0].address;
     }
 
     return ip;

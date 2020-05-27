@@ -27,11 +27,48 @@ let uid = argumentsx[1];
   await page.type('input[id=roomName]',roomName+'-'+getLocalIP()+'-'+i);
   await page.click('#type1');
   await page.click('#createRoom');
-  // await page.screenshot({path: 'example2.png'});
+  // await page.screenshot({path: 'example2.png'});	 
  }	 
+ 
+    
+ 
+ 	 const page = await browser.newPage();
+	 await page.goto('chrome://webrtc-internals/');
+	 await page.click('.peer-connection-dump-root summary');
+	 await page.select('#statsSelectElement','Legacy Non-Standard (callback-based) getStats() API');
+	 setInterval(()=>{     
+	  console.log(page)
+	  page.click('.peer-connection-dump-root button');
+      page.waitFor(20000);
+	  //console.log('ttt');
+      gatherClientInfoToBack();  
+	 },50000)
+	 
+	   
 })();
 
 
+
+
+
+
+function gatherClientInfoToBack(){
+	const fs = require("fs");
+	const os = require('os');
+	var homedir = os.homedir();
+	var downloadDir = homedir+'/Downloads';
+	fs.stat(downloadDir, function (err, stats) {
+         console.log(stats.isDirectory());         //true 
+    })
+	let data = fs.readFileSync(downloadDir+'/webrtc_internals_dump.txt','utf-8');
+	console.log(data);
+	fs.unlink(downloadDir+'/webrtc_internals_dump.txt',function(err){
+		if (err) {
+            return console.error(err);
+         }
+            console.log("文件删除成功！");
+	});
+}
 
 function getLocalIP() {
     const os = require('os');
@@ -52,7 +89,7 @@ function getLocalIP() {
         }
 
     } else if (osType === 'Linux') {
-	console.log(netInfo);    
+	    console.log(netInfo);    
         ip = netInfo.wlp1s0[0].address;
     }
 

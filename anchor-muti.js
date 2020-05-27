@@ -37,11 +37,10 @@ let uid = argumentsx[1];
 	 await page.click('.peer-connection-dump-root summary');
 	 await page.select('#statsSelectElement','Legacy Non-Standard (callback-based) getStats() API');
 	 setInterval(()=>{     
-	  console.log(page)
+	  //console.log(page)
 	  page.click('.peer-connection-dump-root button');
       page.waitFor(20000);
-	  //console.log('ttt');
-      gatherClientInfoToBack();  
+      //gatherClientInfoToBack();  
 	 },50000)
 	 
 	   
@@ -59,7 +58,8 @@ function gatherClientInfoToBack(){
 	var downloadDir = homedir+'/Downloads';
 	fs.stat(downloadDir, function (err, stats) {
          console.log(stats.isDirectory());         //true 
-    })
+    });
+	
 	let data = fs.readFileSync(downloadDir+'/webrtc_internals_dump.txt','utf-8');
 	console.log(data);
 	fs.unlink(downloadDir+'/webrtc_internals_dump.txt',function(err){
@@ -89,8 +89,16 @@ function getLocalIP() {
         }
 
     } else if (osType === 'Linux') {
-	    console.log(netInfo);    
-        ip = netInfo.wlp1s0[0].address;
+	    if(netInfo.wlp1s0){
+			ip = netInfo.wlp1s0[0].address;
+		}
+        if(netInfo.enp2s0){
+			ip = netInfo.enp2s0[0].address;
+		}
+        if(netInfo.eth0){
+			ip = netInfo.eth0[0].address;
+		}		
+        
     }
 
     return ip;

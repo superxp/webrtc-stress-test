@@ -8,8 +8,11 @@ let roomName = argumentsx[0];
  (async () => {
   const browser = await puppeteer.launch(
 	  {       
-		  args: [ '--use-fake-ui-for-media-stream' ],
-		  headless: false,
+		  args: [ 
+		  '-no-sandbox',
+		  '--use-fake-ui-for-media-stream' 
+		  ],
+		  headless: true,
 		  slowMo: 100,
 		  ignoreHTTPSErrors : true}
   );
@@ -17,12 +20,12 @@ let roomName = argumentsx[0];
 {
   const page = await browser.newPage();
   await page.goto('https://47.106.74.130:8441/webRtc.html');
-  await page.screenshot({path: 'audience.png'});
+  //await page.screenshot({path: 'audience.png'});
   await page.type('input[id=userName]','audience-'+i);
   await page.type('input[id=roomName]',roomName);
   await page.click('#type2');
   await page.click('#joinRoom');
-  await page.screenshot({path: 'audience2.png'});
+  //await page.screenshot({path: 'audience2.png'});
   }
   }	  
 )();

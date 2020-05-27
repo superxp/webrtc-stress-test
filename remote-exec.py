@@ -69,9 +69,9 @@ ssh.connect(
 
 
 if role == 'anchor':	
-	command = 'cd webrtc-stress-test-durant && git pull && node anchor-muti.js '+roomName+' '+numberx+' '
+	command = 'cd webrtc-stress-test-durant && git pull && nohup node anchor-muti.js '+roomName+' '+numberx+' >./log-Anchor-'+roomName+'.txt  2>&1 &'
 else:
-	command = 'cd webrtc-stress-test-durant && git pull && node audience-mutli.js '+roomName+' '+numberx+' '
+	command = 'cd webrtc-stress-test-durant && git pull && nohup node audience-mutli.js '+roomName+' '+numberx+' >./log-Audience-'+roomName+'.txt  2>&1 &'
 			
 print command			
 #windows 与 linux 区分

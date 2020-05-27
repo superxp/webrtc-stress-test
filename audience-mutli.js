@@ -4,8 +4,7 @@ var  argumentsx = argv.splice(2);
 console.log(argumentsx);
 let uid = argumentsx[1];
 let roomName = argumentsx[0];
-for(let i=0;i<uid;i++)
-{
+
  (async () => {
   const browser = await puppeteer.launch(
 	  {       
@@ -14,6 +13,8 @@ for(let i=0;i<uid;i++)
 		  slowMo: 100,
 		  ignoreHTTPSErrors : true}
   );
+  for(let i=0;i<uid;i++)
+{
   const page = await browser.newPage();
   await page.goto('https://47.106.74.130:8441/webRtc.html');
   await page.screenshot({path: 'audience.png'});
@@ -22,6 +23,7 @@ for(let i=0;i<uid;i++)
   await page.click('#type2');
   await page.click('#joinRoom');
   await page.screenshot({path: 'audience2.png'});
+  }
   }	  
 )();
-};
+

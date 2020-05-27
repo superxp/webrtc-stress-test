@@ -2,7 +2,12 @@
 import paramiko
 import sys
 
-
+#python remote-exec.py -h durant -role audience  -n 10 -t 100 -roomName xiaopang 
+# -h 主机名
+# -role 角色名
+# -n  数量
+# -t 执行时间
+# -roomName 房间名称|
 #print '参数列表:', str(sys.argv)
 
 args = sys.argv
@@ -18,6 +23,7 @@ machineName = args[2]
 role = args[4]
 numberx = args[6]
 execTime = args[8] 
+roomName = args[10]
 
 
 #创建一个ssh的客户端，用来连接服务器
@@ -63,9 +69,9 @@ ssh.connect(
 
 
 if role == 'anchor':	
-	command = 'cd webrtc-stress-test-durant && git pull && node anchor-muti.js '
+	command = 'cd webrtc-stress-test-durant && git pull && node anchor-muti.js '+roomName+' '+numberx+' '
 else:
-	command = 'cd webrtc-stress-test-durant && git pull && node audience-mutli.js'
+	command = 'cd webrtc-stress-test-durant && git pull && node audience-mutli.js '+roomName+' '+numberx+' '
 			
 print command			
 #windows 与 linux 区分

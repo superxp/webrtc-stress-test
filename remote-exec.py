@@ -35,28 +35,39 @@ ssh.set_missing_host_key_policy(know_host)
 							
 			
 MachineInfoDict= {
-            "durant":{"hostname" : "10.20.12.237",
+            
+			"durant":{"hostname" : "10.20.12.237",
 			"port" : 22,
 			"username" :"durant",
 			"password" :"1",
 			"os":"Linux"
 			},
+			
 			"durant1":{"hostname" : "10.20.10.98",
 			"port" : 22,
 			"username" :"durant1",
 			"password" :"1",
             "os":"Linux"			
 			},
+			
 			"durantWindows1":{"hostname" : "10.20.10.53",
 			"port" : 22,
 			"username" :"durant.zeng",
 			"password" :"1qaz!QAZ1",
 			"os":"Windows"
 			},
+			
 			"durantWindows2":{"hostname" : "10.20.12.130",
 			"port" : 22,
 			"username" :"durant.zeng",
 			"password" :"1qaz!QAZ1",
+			"os":"Windows"
+			},
+			
+			"nignWindows":{"hostname" : "10.20.12.207",
+			"port" : 22,
+			"username" :"ning.ou",
+			"password" :"ONL@132015onl",
 			"os":"Windows"
 			}
 			}
@@ -67,7 +78,7 @@ MachineInfoDict= {
 
 MachineInfo = MachineInfoDict[machineName]
 
-#print MachineInfo
+print MachineInfo
 #print type(MachineInfo)
 machineOs = MachineInfo["os"];
 
@@ -81,14 +92,13 @@ ssh.connect(
 )
 
 
-
 #执行命令
 
 
 if role == 'anchor' and machineOs == 'Linux':	
 	command = 'cd webrtc-stress-test-durant  && nohup node anchor-muti.js '+roomName+' '+numberx+' >../logs/log-Anchor-'+roomName+'.txt  2>&1 &'
 
-if role == 'anchor' and machineOs == 'Windows ':
+if role == 'anchor' and machineOs == 'Windows':
 	command = 'cd webrtc-stress-test-durant&node anchor-muti.js '+roomName+' '+numberx+' >../logs/log-Anchor-'+roomName+'.txt'
 
 if role == 'audience'  and machineOs == 'Linux':

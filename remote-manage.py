@@ -4,7 +4,7 @@ import sys
 import os
 import subprocess
 
-#python remote-manage.py -anchor 10 -audience 10  -n 10 -t 100 
+#python remote-manage.py -anchor 10 -audience 10 -roomName 996 -t 100 
 # 
 # -anchor 主播数量
 # -audience 观众数量
@@ -22,6 +22,7 @@ if len(args) < 9 :
 
 anchorNum = args[2]
 audienceNum = args[4]
+roomName = args[6]
 
 
 anchorRoleList = ['durant']
@@ -36,11 +37,11 @@ everyMachineAudienceRoomNum = int(audienceNum)/len(audienceRoleList)
 
 
 for i in anchorRoleList:
-	subprocess.Popen('python remote-exec.py -h '+i+' -role anchor  -n '+str(everyMachineAnchorRoomNum)+' -t 100 -roomName xiaopangW');
+	subprocess.Popen('python remote-exec.py -h '+i+' -role anchor  -n '+str(everyMachineAnchorRoomNum)+' -t 100 -roomName '+roomName);
 	
 
 for i in audienceRoleList:
-	subprocess.Popen('python remote-exec.py -h '+i+' -role audience  -n '+str(everyMachineAudienceRoomNum)+' -t 100 -roomName xiaopangW');	
+	subprocess.Popen('python remote-exec.py -h '+i+' -role audience  -n '+str(everyMachineAudienceRoomNum)+' -t 100 -roomName ');	
 	
 	
  

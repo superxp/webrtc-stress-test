@@ -27,12 +27,12 @@ anchorNum = args[2]
 audienceNum = args[4]
 roomName = args[6]
 
-anchorMachineIp={"durant":"10.20.12.237","durantWindows1":"10.20.10.53"}
+anchorMachineIp={"durant":"10.20.12.237","daiwenWindows":"10.20.10.65","jina":"10.20.12.219"}
 
 #主播2台机器
-anchorRoleList = ['durant']
-#观众端1台机器
-audienceRoleList = ['durant']
+anchorRoleList = ['durant','jina']
+#观众端2台机器
+audienceRoleList = ['durantWindows1','ningWindows']
 
 
 
@@ -45,14 +45,15 @@ everyMachineAnchorRoomNum = int(anchorNum)/len(anchorRoleList)
 everyMachineAudienceNum  = int(audienceNum)/len(audienceRoleList)
 
 #每个房间的观众数
-everyRoomAudience = int(audienceNum)/ int(anchorNum);
+everyRoomAudience = int(audienceNum)/ int(anchorNum)
 
 
 
 print everyRoomAudience
 
 for i in anchorRoleList:
-	os.system('python remote-exec.py -h '+i+' -role anchor  -n '+str(everyMachineAnchorRoomNum)+' -t 100 -roomName '+roomName);
+	command = 'python remote-exec.py -h '+i+' -role anchor  -n '+str(everyMachineAnchorRoomNum)+' -t 100 -roomName '+roomName
+	os.system(command)
 	
 	
 	

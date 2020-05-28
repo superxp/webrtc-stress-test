@@ -64,11 +64,25 @@ MachineInfoDict= {
 			"os":"Windows"
 			},
 			
-			"nignWindows":{"hostname" : "10.20.12.207",
+			"ningWindows":{"hostname" : "10.20.12.207",
 			"port" : 22,
 			"username" :"ning.ou",
 			"password" :"ONL@132015onl",
 			"os":"Windows"
+			},
+			"daiwenWindows":{
+			  "hostname":"10.20.10.65",
+			  "port":22,
+			  "username":"daiwen.dai",
+			  "password":"995722zjl,",
+			  "os":"Windows"
+			},
+			"jina":{
+			  "hostname":"10.20.12.219",
+			  "port":22,
+			  "username":"jina.zhan",
+			  "password":"1qaz@2wsx",
+			  "os":"Windows"
 			}
 			}
 			

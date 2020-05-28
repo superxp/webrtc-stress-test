@@ -34,14 +34,32 @@ know_host = paramiko.AutoAddPolicy()
 ssh.set_missing_host_key_policy(know_host)
 							
 			
-MachineInfoDict= {"durant":{"hostname" : "10.20.12.237",
+MachineInfoDict= {
+            "durant":{"hostname" : "10.20.12.237",
 			"port" : 22,
 			"username" :"durant",
-			"password" :"1"},
+			"password" :"1",
+			"os":"Linux"
+			},
 			"durant1":{"hostname" : "10.20.10.98",
 			"port" : 22,
 			"username" :"durant1",
-			"password" :"1"}}
+			"password" :"1",
+            "os":"Linux"			
+			},
+			"durantWindows1":{"hostname" : "10.20.10.53",
+			"port" : 22,
+			"username" :"durant.zeng",
+			"password" :"1qaz!QAZ1",
+			"os":"Windows"
+			},
+			"durantWindows2":{"hostname" : "10.20.12.130",
+			"port" : 22,
+			"username" :"durant.zeng",
+			"password" :"1qaz!QAZ1",
+			"os":"Windows"
+			}
+			}
 			
 			
 
@@ -51,8 +69,7 @@ MachineInfo = MachineInfoDict[machineName]
 
 #print MachineInfo
 #print type(MachineInfo)
-
-
+machineOs = MachineInfo["os"];
 
  
 #连接服务器
@@ -68,13 +85,22 @@ ssh.connect(
 #执行命令
 
 
-if role == 'anchor':	
-	command = 'cd webrtc-stress-test-durant && git pull && nohup node anchor-muti.js '+roomName+' '+numberx+' >./log-Anchor-'+roomName+'.txt  2>&1 &'
-else:
-	command = 'cd webrtc-stress-test-durant && git pull && nohup node audience-mutli.js '+roomName+' '+numberx+' >./log-Audience-'+roomName+'.txt  2>&1 &'
+if role == 'anchor' and machineOs == 'Linux':	
+	command = 'cd webrtc-stress-test-durant  && nohup node anchor-muti.js '+roomName+' '+numberx+' >../logs/log-Anchor-'+roomName+'.txt  2>&1 &'
+
+if role == 'anchor' and machineOs == 'Windows ':
+	command = 'cd webrtc-stress-test-durant&node anchor-muti.js '+roomName+' '+numberx+' >../logs/log-Anchor-'+roomName+'.txt'
+
+if role == 'audience'  and machineOs == 'Linux':
+	command = 'cd webrtc-stress-test-durant && nohup node audience-mutli.js '+roomName+' '+numberx+' >../logs/log-Audience-'+roomName+'.txt  2>&1 &'
+
+if role == 'audience'  and machineOs == 'Windows':
+	command = 'cd webrtc-stress-test-durant&node audience-mutli.js '+roomName+' '+numberx+' >../logs/log-Audience-'+roomName+'.txt'
+    	
 			
 print command			
 #windows 与 linux 区分
 stdin1,stdout1,stderr1 = ssh.exec_command(command)
-print(stdout1.read().decode())
-print(stderr1.read().decode())
+#print(stdout1.read().decode('gbk'))
+#print(stderr1.read().decode('gbk'))
+ssh.close()

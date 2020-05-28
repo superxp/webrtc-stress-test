@@ -4,7 +4,7 @@ import sys
 import os
 import subprocess
 
-#python remote-manage.py -anchor 10 -audience 50 -roomName 996 -t 100 
+#python remote-manage.py -anchor 10 -audience 4 -roomName 996 -t 100 
 # 
 # -anchor 主播数量
 # -audience 观众数量
@@ -30,9 +30,9 @@ roomName = args[6]
 anchorMachineIp={"durant":"10.20.12.237","daiwenWindows":"10.20.10.65","jina":"10.20.12.219"}
 
 #主播2台机器
-anchorRoleList = ['durant','jina']
+anchorRoleList = ['durantWindows1','jina']
 #观众端2台机器
-audienceRoleList = ['durantWindows1','ningWindows']
+audienceRoleList = ['durant','ningWindows']
 
 
 

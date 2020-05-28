@@ -10,9 +10,12 @@ let roomName = argumentsx[0];
 	  {       
 		  args: [ 
 		  '-no-sandbox',
-		  '--use-fake-ui-for-media-stream' 
+		  '--use-fake-device-for-media-stream',
+		  '--use-fake-ui-for-media-stream', 
+		  '--use-file-for-fake-audio-capture='+process.cwd()+'/1.wav',
+	      '--use-file-for-fake-video-capture='+process.cwd()+'/1.mjpeg'
 		  ],
-		  headless: true,
+		  headless: false,
 		  slowMo: 100,
 		  ignoreHTTPSErrors : true}
   );

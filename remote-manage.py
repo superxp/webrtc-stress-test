@@ -24,9 +24,11 @@ anchorNum = args[2]
 audienceNum = args[4]
 roomName = args[6]
 
-
-anchorRoleList = ['durant']
+anchorMachineIp={"durant":"10.20.12.237","durantWindows1":"10.20.10.53"}
+anchorRoleList = ['durant','durantWindows1']
 audienceRoleList = ['durant']
+
+
 
 
 everyMachineAnchorRoomNum = int(anchorNum)/len(anchorRoleList)
@@ -41,7 +43,7 @@ for i in anchorRoleList:
 	
 
 for i in audienceRoleList:
-	subprocess.Popen('python remote-exec.py -h '+i+' -role audience  -n '+str(everyMachineAudienceRoomNum)+' -t 100 -roomName ');	
+	subprocess.Popen('python remote-exec.py -h '+i+' -role audience  -n '+str(everyMachineAudienceRoomNum)+' -t 100 -roomName '+roomName+'-'+anchorMachineIp[i]);	
 	
 	
  

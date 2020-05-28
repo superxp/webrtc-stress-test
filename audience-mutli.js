@@ -15,7 +15,7 @@ let roomName = argumentsx[0];
 		  '--use-file-for-fake-audio-capture='+process.cwd()+'/1.wav',
 	      '--use-file-for-fake-video-capture='+process.cwd()+'/1.mjpeg'
 		  ],
-		  headless: false,
+		  headless: true,
 		  slowMo: 100,
 		  ignoreHTTPSErrors : true}
   );

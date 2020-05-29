@@ -4,7 +4,7 @@ import sys
 import os
 import subprocess
 
-#python remote-manage.py -anchor 10 -audience 4 -roomName 996 -t 100 
+#python remote-manage.py -anchor 2 -audience 8 -roomName 996 -t 100 
 # 
 # -anchor 主播数量
 # -audience 观众数量
@@ -25,9 +25,10 @@ if len(args) < 9 :
 anchorNum = args[2]
 #需要分配的观众数
 audienceNum = args[4]
+
 roomName = args[6]
 
-anchorMachineIp={"durant":"10.20.12.237","daiwenWindows":"10.20.10.65","jina":"10.20.12.219"}
+anchorMachineIp={"durant":"10.20.12.237","durantWindows1":"10.20.10.53","jina":"10.20.12.219"}
 
 #主播2台机器
 anchorRoleList = ['durantWindows1','jina']
@@ -42,19 +43,36 @@ everyMachineAnchorRoomNum = int(anchorNum)/len(anchorRoleList)
 
 
 #每台机器分配的观众数
-everyMachineAudienceNum  = int(audienceNum)/len(audienceRoleList)
+#everyMachineAudienceNum  = int(audienceNum)/len(audienceRoleList)
 
 #每个房间的观众数
 everyRoomAudience = int(audienceNum)/ int(anchorNum)
 
 
 
+print everyMachineAnchorRoomNum
 print everyRoomAudience
+
+
 
 for i in anchorRoleList:
 	command = 'python remote-exec.py -h '+i+' -role anchor  -n '+str(everyMachineAnchorRoomNum)+' -t 100 -roomName '+roomName
 	os.system(command)
 	
+
+# 房间数量*每个房间的观众数=观众数量	
+#for i in anchorNum:
+#			os.system('python remote-exec.py -h '+i+' -role audience  -n '+str(everyRoomAudience)+' -t 100 -roomName '+roomName+'-'+anchorMachineIp[x]+"-"+str(y));
+
+
+	
+#for x in anchorRoleList: 
+#	for y in everyMachineAnchorRoomNum:
+#		os.system('python remote-exec.py -h '+?+' -role audience  -n '+str(everyRoomAudience)+' -t 100 -roomName '+roomName+'-'+anchorMachineIp[x]+"-"+str(y));			
+	
+	
+ 
+
 	
 	
 for i in audienceRoleList:

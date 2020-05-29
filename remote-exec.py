@@ -92,7 +92,7 @@ MachineInfoDict= {
 
 MachineInfo = MachineInfoDict[machineName]
 
-print MachineInfo
+#print MachineInfo
 #print type(MachineInfo)
 machineOs = MachineInfo["os"];
 

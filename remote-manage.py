@@ -65,20 +65,22 @@ for i in anchorRoleList:
 #			os.system('python remote-exec.py -h '+i+' -role audience  -n '+str(everyRoomAudience)+' -t 100 -roomName '+roomName+'-'+anchorMachineIp[x]+"-"+str(y));
 
 
-	
-#for x in anchorRoleList: 
-#	for y in everyMachineAnchorRoomNum:
-#		os.system('python remote-exec.py -h '+?+' -role audience  -n '+str(everyRoomAudience)+' -t 100 -roomName '+roomName+'-'+anchorMachineIp[x]+"-"+str(y));			
-	
-	
- 
 
+
+
+a=0
+for x in range (len(anchorRoleList)): 
+	for y in range (everyMachineAnchorRoomNum):
+		command = 'python remote-exec.py -h '+audienceRoleList[a%len(audienceRoleList)]+' -role audience  -n '+str(everyRoomAudience)+' -t 100 -roomName '+roomName+'-'+anchorMachineIp[anchorRoleList[x]]+'-'+str(y)
+		os.system(command)
+		a=a+1
+		print command
 	
 	
-for i in audienceRoleList:
-	for x in anchorRoleList:
-		for y in range (everyMachineAnchorRoomNum):
-			os.system('python remote-exec.py -h '+i+' -role audience  -n '+str(everyRoomAudience)+' -t 100 -roomName '+roomName+'-'+anchorMachineIp[x]+"-"+str(y));
+#for i in audienceRoleList:
+#	for x in anchorRoleList:
+#		for y in range (everyMachineAnchorRoomNum):
+#			os.system('python remote-exec.py -h '+i+' -role audience  -n '+str(everyRoomAudience)+' -t 100 -roomName '+roomName+'-'+anchorMachineIp[x]+"-"+str(y));
 	
 	
  
